@@ -241,8 +241,44 @@ flowchart LR
 
     root --> mozLog["MozLog integration"]
     root --> telemetry["Improved Telemetry and Telemetry Integration"]
-
     root --> cacheStatistics["Performance metrics for SM caches"]
+
+    subgraph Bindings
+        webIDL
+        ecmaIDL
+        webIDL --> sharedWebIDL["Shared WebIDL"]
+        click sharedWebIDL "#sharedWebIDL"
+    end
+
+    subgraph memoryAllocation["Memory Allocation"]
+        cc
+        refCount
+        smHeap
+        contiguousNursery
+        contiguousTenuredHeap
+        pointerCompression
+        compressedDOM
+
+        unifiedGcHeap["Unified GC Heap"]
+        click unifiedGcHeap "#unifiedGcHeap"
+        class unifiedGcHeap GC
+
+        smartPointerUnification["Smart Pointer Unification"]
+
+        unifiedGcHeap --> gcLibrary["GC Library"]
+        click gcLibrary "#gcLibrary"
+        class gcLibrary GC
+
+    end
+
+    root -->unifiedGcHeap
+    root --> smartPointerUnification
+
+    subgraph betterInformation["Better Information"]
+        telemetry
+        cacheStatistics
+        mozLog
+    end
 
     %% Click Handlers
     %% Example of a programatic click handler for giggles. Notice that the callback
