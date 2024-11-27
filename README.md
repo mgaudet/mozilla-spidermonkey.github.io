@@ -2,9 +2,40 @@
 
 Static content for https://spidermonkey.dev/
 
-This website is a landing page connecting to resources useful for people working on or with the Mozilla SpiderMonkey JavaScript Engine.
+This website is a landing page connecting to resources useful for people working on
+or with the Mozilla SpiderMonkey JavaScript Engine.
 
-Note: Documentation itself should be kept in-tree when possible and linked to from here.
+Note: Documentation itself should be kept in-tree when possible and linked to from
+here.
+
+## Adding a new post
+
+- Create an entry in `_posts`, with title layout of `YYYY-MM-DD-title.markdown`
+- Add a frontsmatter:
+
+```
+---
+layout: post
+title: "My Title"
+date: 2021-05-03 09:30:00 +0700
+---
+```
+
+## Contributing to this site
+
+To contribute changes to https://spidermonkey.dev/, submit a pull request. It will be
+reviewed by someone in the "Website Reviewers Group". There isn't a formal policy for
+what is needed for a review, but we do want to second set of eyes checking for typos,
+phrasing, and other editorial things.
+
+Material for the website is focused around communication between the SpiderMonkey
+team and community (such as "What chat service can the team be found on this year?").
+Low-level technical details on using SpiderMonkey usually are best documented in the
+source as `[SMDOC]` comments, and version-specific information (such as build, debug,
+and testing information) is best documented on
+https://firefox-source-docs.mozilla.org/.
+
+
 
 ## Running locally
 
@@ -22,6 +53,16 @@ $ bundle exec jekyll serve
 This will start a webserver on localhost. It rebuilds the website in the background
 when you update the markdown files.
 
+### Troubleshooting
+
+#### First Steps
+
+Ensure you're using a modern ruby. Consider using a ruby version manager like
+[rbenv](https://github.com/rbenv/rbenv) which will allow you to freely change
+versions, even just for this directory
+
+
+#### Other steps
 If `bundle install` fails with an error about the Bundler version, do what it suggests,
 for example:
 
@@ -31,23 +72,11 @@ $ gem install bundler:2.0.2
 
 If you get `Error:  undefined method `[]' for nil` make sure you are using ruby <= 3.2.2(jekyll >= 4.3.2 requires ruby >= 3.3.0)
 
+#### macOS failures:
 
-## Adding a new post
+- [*Failure to build native extension*](https://github.com/eventmachine/eventmachine/issues/1009)
 
-- Create an entry in `_posts`, with title layout of `YYYY-MM-DD-title.markdown`
-- Add a frontsmatter:
-
-```
----
-layout: post
-title: "My Title"
-date: 2021-05-03 09:30:00 +0700
----
-```
-
-## Contributing to this site
-
-To contribute changes to https://spidermonkey.dev/, submit a pull request. It will be reviewed by someone in the "Website Reviewers Group". There isn't a formal policy for what is needed for a review, but we do want to second set of eyes checking for typos, phrasing, and other editorial things.
-
-Material for the website is focused around communication between the SpiderMonkey team and community (such as "What chat service can the team be found on this year?"). Low-level technical details on using SpiderMonkey usually are best documented in the source as `[SMDOC]` comments, and version-specific information (such as build, debug, and testing information) is best documented on https://firefox-source-docs.mozilla.org/.
-
+   ```
+   sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+   sudo xcodebuild -license
+   ```
